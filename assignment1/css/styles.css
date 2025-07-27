@@ -13,7 +13,7 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 2.625rem; /* 75% larger than base (1.5 * 1.75) */
+  font-size: 2.625rem;
   margin-bottom: 30px;
 }
 
@@ -21,15 +21,26 @@ h1 {
   width: 100%;
 }
 
+/* Section layout */
 .section {
   position: relative;
   border: 1px solid black;
-  background-color: #f2f2f270;
+  background-color: #f2f2f2;
   padding: 40px 20px 20px 20px;
   margin: 10px;
   color: #333;
+  overflow: hidden;
+  transition: background-color 0.3s ease, height 0.3s ease;
+  height: 250px; /* base height */
 }
 
+/* Expand only hovered section */
+.section:hover {
+  background-color: #e0e0e0;
+  height: 420px; /* expanded height */
+}
+
+/* Section title */
 .section-title {
   position: absolute;
   top: 0;
@@ -37,24 +48,42 @@ h1 {
   background-color: #d1d1d1;
   color: #000;
   padding: 5px 10px;
-  font-size: 1.25rem; /* 25% larger than base 1rem */
+  font-size: 1.25rem;
   border: 1px solid black;
 }
 
-/* Unique background colors for section titles */
-.chicken .section-title {
-  background-color: #ffcccb;
+.chicken .section-title { background-color: #ffcccb; }
+.beef .section-title { background-color: #ffc107; }
+.sushi .section-title { background-color: #90ee90; }
+
+/* Hover content */
+.hover-content {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 15px;
 }
 
-.beef .section-title {
-  background-color: #ffc107;
+.section:hover .hover-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.sushi .section-title {
-  background-color: #90ee90;
+.hover-content ul {
+  list-style: disc inside;
+  margin-bottom: 10px;
 }
 
-/* Desktop view: 992px and up */
+.hover-content img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border: 1px solid #333;
+}
+
+/* Responsive layout */
 @media (min-width: 992px) {
   .sections-container {
     display: flex;
@@ -67,7 +96,6 @@ h1 {
   }
 }
 
-/* Tablet view: 768px - 991px */
 @media (min-width: 768px) and (max-width: 991px) {
   .sections-container {
     display: flex;
@@ -85,7 +113,6 @@ h1 {
   }
 }
 
-/* Mobile view: 767px and below */
 @media (max-width: 767px) {
   .section {
     width: 100%;
