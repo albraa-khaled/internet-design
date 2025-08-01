@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counterclockwise Corner Mover</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: #f0f0f0;
+    }
+
+    #moveBtn {
+      position: absolute;
+      z-index: 2;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #object {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      transition: all 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="moveBtn">Move Object</button>
+  <div id="object"></div>
+
+  <script>
+    const object = document.getElementById("object");
+    const button = document.getElementById("moveBtn");
+
+    // Counterclockwise order:
+    const positions = [
+      { top: "10px", left: "10px" },       // top-left
+      { bottom: "10px", left: "10px" },    // bottom-left
+      { bottom: "10px", right: "10px" },   // bottom-right
+      { top: "10px", right: "10px" },      // top-right
+    ];
+
+    const colors = ["red", "blue", "green", "orange"];
+
+    let currentPosition = 0;
+
+    button.addEventListener("click", () => {
+      // Clear previous position styles
+      object.style.top = "";
+      object.style.bottom = "";
+      object.style.left = "";
+      object.style.right = "";
+
+      // Set new position
+      const pos = positions[currentPosition];
+      for (let key in pos) {
+        object.style[key] = pos[key];
+      }
+
+      // Change color
+      object.style.backgroundColor = colors[currentPosition];
+
+      // Update to next position (counterclockwise)
+      currentPosition = (currentPosition + 1) % positions.length;
+    });
+  </script>
+
+</body>
+</html>
