@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { bottom: "20px", right: "20px" }     
   ];
 
-  const colors = ["red", "blue", "green", "yello"];
+  const colors = ["red", "blue", "green", "yellow"];
   let index = 0;
 
   function moveRectangle() {
