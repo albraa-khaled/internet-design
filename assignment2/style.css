@@ -7,7 +7,7 @@ body {
   font-family: sans-serif;
 }
 
-/* Button in the center of the screen */
+
 button {
   position: absolute;
   top: 50%;
@@ -18,7 +18,7 @@ button {
   cursor: pointer;
 }
 
-/* Rectangle style */
+
 .rectangle {
   position: absolute;
   width: 100px;
