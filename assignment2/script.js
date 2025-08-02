@@ -1,37 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Create rectangle and add it to the page
-  const rectangle = document.createElement("div");
-  rectangle.id = "rectangle";
-  document.body.appendChild(rectangle);
+  // Create the rectangle
+  const rect = document.createElement("div");
+  rect.id = "rectangle";
+  document.body.appendChild(rect);
 
-  // Corner positions in counterclockwise order
+  // Define positions (counterclockwise)
   const positions = [
-    { bottom: "20px", left: "20px" },     // Bottom-left
-    { top: "20px", left: "20px" },        // Top-left
-    { top: "20px", right: "20px" },       // Top-right
-    { bottom: "20px", right: "20px" }     // Bottom-right
+    { bottom: "20px", left: "20px" },     // bottom-left
+    { top: "20px", left: "20px" },        // top-left
+    { top: "20px", right: "20px" },       // top-right
+    { bottom: "20px", right: "20px" }     // bottom-right
   ];
 
+  // Colors to cycle through
   const colors = ["red", "blue", "green", "orange"];
-  let current = 0;
 
-  document.getElementById("moveBtn").addEventListener("click", () => {
-    // Move to the next corner
-    current = (current + 1) % positions.length;
+  let index = 0; // current corner index
 
+  const moveBtn = document.getElementById("moveBtn");
+
+  moveBtn.addEventListener("click", () => {
     // Clear all position styles
-    rectangle.style.top = "";
-    rectangle.style.bottom = "";
-    rectangle.style.left = "";
-    rectangle.style.right = "";
+    rect.style.top = "";
+    rect.style.bottom = "";
+    rect.style.left = "";
+    rect.style.right = "";
 
-    // Apply the current position
-    const pos = positions[current];
+    // Apply new position
+    const pos = positions[index];
     for (let key in pos) {
-      rectangle.style[key] = pos[key];
+      rect.style[key] = pos[key];
     }
 
-    // Apply the current color
-    rectangle.style.backgroundColor = colors[current];
+    // Apply new color
+    rect.style.backgroundColor = colors[index];
+
+    // Move to next corner
+    index = (index + 1) % positions.length;
   });
 });
