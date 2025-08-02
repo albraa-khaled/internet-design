@@ -1,4 +1,4 @@
-/* Make page full height and centered */
+/* Full screen layout */
 body {
   margin: 0;
   height: 100vh;
@@ -7,7 +7,7 @@ body {
   overflow: hidden;
 }
 
-/* Center the button */
+/* Centered button */
 #moveBtn {
   position: absolute;
   top: 50%;
@@ -19,7 +19,7 @@ body {
   z-index: 10;
 }
 
-/* Style for the rectangle (initial bottom-left position) */
+/* The rectangle style */
 #rectangle {
   width: 100px;
   height: 80px;
