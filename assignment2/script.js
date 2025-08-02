@@ -1,10 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Create the rectangle
-  const rect = document.createElement("div");
-  rect.id = "rectangle";
-  document.body.appendChild(rect);
+  const rect = document.getElementById("Rectangle");
+  const button = document.querySelector("button");
 
-  // Define positions (counterclockwise)
   const positions = [
     { bottom: "20px", left: "20px" },     // bottom-left
     { top: "20px", left: "20px" },        // top-left
@@ -12,15 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     { bottom: "20px", right: "20px" }     // bottom-right
   ];
 
-  // Colors to cycle through
   const colors = ["red", "blue", "green", "orange"];
+  let index = 0;
 
-  let index = 0; // current corner index
-
-  const moveBtn = document.getElementById("moveBtn");
-
-  moveBtn.addEventListener("click", () => {
-    // Clear all position styles
+  function moveRectangle() {
+    // Reset all position properties
     rect.style.top = "";
     rect.style.bottom = "";
     rect.style.left = "";
@@ -28,14 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Apply new position
     const pos = positions[index];
-    for (let key in pos) {
-      rect.style[key] = pos[key];
+    for (let side in pos) {
+      rect.style[side] = pos[side];
     }
 
-    // Apply new color
+    // Change color
     rect.style.backgroundColor = colors[index];
 
-    // Move to next corner
+    // Move to next position (loop back to start)
     index = (index + 1) % positions.length;
-  });
+  }
+
+  // Set initial position
+  moveRectangle();
+
+  // On button click
+  button.addEventListener("click", moveRectangle);
 });
